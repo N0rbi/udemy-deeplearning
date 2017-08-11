@@ -25,7 +25,7 @@ X = onehot.fit_transform(X).toarray()
 X = X[:, 1:]
 
 # Scaling
-from sklearn.cross_validation import train_test_split
+from sklearn.model_selection import train_test_split
 
 
 # Split data
@@ -33,8 +33,19 @@ X_tr, X_t, y_tr, y_t = train_test_split(X, Y)
 
 from sklearn.preprocessing import StandardScaler
 
+# scale after splitting, because otherwise the bias would be too big
+
 x_scale = StandardScaler()
 
 X_tr = x_scale.fit_transform(X_tr)
 
 X_t = x_scale.transform(X_t)
+
+### ANN ###
+#Keras libs:
+import keras
+from keras.models import Sequential
+from keras.layers import Dense
+
+classifier = Sequential()
+classifier.add(Dense(units=6, kernel_initializer='uniform', activation='relu', input_shape=(11)))
