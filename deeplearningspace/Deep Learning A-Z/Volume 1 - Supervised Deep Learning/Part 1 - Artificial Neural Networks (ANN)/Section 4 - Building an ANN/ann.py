@@ -21,6 +21,7 @@ dataset = pd.read_csv('Churn_Modelling.csv')
 X = dataset.iloc[:, 3:13].values
 y = dataset.iloc[:, 13].values
 
+
 # Encoding categorical data
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 labelencoder_X_1 = LabelEncoder()
@@ -75,3 +76,13 @@ y_pred = (y_pred > 0.5)
 # Making the Confusion Matrix
 from sklearn.metrics import confusion_matrix
 cm = confusion_matrix(y_test, y_pred)
+
+#HOMEWORK
+sample = np.array([[600, 'France', 'Male',  40, 3, 60000, 2, 1, 1, 50000]])
+
+sample[:, 1] = labelencoder_X_1.transform(sample[:, 1])
+sample[:, 2] = labelencoder_X_2.transform(sample[:, 2])
+sample = onehotencoder.transform(sample).toarray()
+#dummy trap
+sample = sample[: , 1:]
+
